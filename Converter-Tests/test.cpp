@@ -7,3 +7,10 @@ TEST(RomanInput, TestValidData)
 //  EXPECT_EQ(1, 1);
   EXPECT_TRUE(testVI.isDataValid());
 }
+
+TEST(RomanInput, TestInvalidData)
+{
+    RomanData testVI("VIIII");
+    //  EXPECT_EQ(1, 1);
+    EXPECT_FALSE(testVI.isDataValid());
+}
