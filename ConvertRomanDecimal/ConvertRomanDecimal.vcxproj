@@ -121,11 +121,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FormConverterInputOutput.cpp" />
+    <ClCompile Include="RomanData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormConverterInputOutput.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="RomanData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
