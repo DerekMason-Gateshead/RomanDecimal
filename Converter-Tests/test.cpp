@@ -19,10 +19,10 @@ ValidTestData data[] = { {"VI",6},
                          {"X",10 },
                          {"III", 3} };
 
-InvalidData  invalidTestData[] = { {"VIIII", eFAIL_TOO_MANY_ONE_BASE_VALUES},
-                                  {"IIII", eFAIL_TOO_MANY_ONE_BASE_VALUES},
-                                  {"IIV", eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES},
-                                   {"VV", eFAIL_TOO_MANY_FIVE_BASE_VALUES} };
+InvalidData  invalidTestData[] = { {"VIIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES},
+                                  {"IIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES},
+                                  {"IIV", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES},
+                                   {"VV", eFAILCODE::eFAIL_TOO_MANY_FIVE_BASE_VALUES} };
 
 
 

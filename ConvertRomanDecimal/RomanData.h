@@ -1,6 +1,6 @@
 #pragma once
 
-enum eFAILCODE
+enum class eFAILCODE
 {
     eSUCCESS = 0,
     eFAIL_INVALID_DATA_VALUE = 1,
@@ -21,13 +21,13 @@ public:
 
     bool isDataValid(); // returns if roman data is valid 
     int getDecimalValue();
-    int getFailCode() { return m_nFaileCode; }
+    eFAILCODE getFailCode() { return m_nFaileCode; }
 
 
 private:
     bool m_bDataValid = false; // Set if roman data is valid
     int  m_nDecimalValue = 0;
 
-    eFAILCODE m_nFaileCode = eUNINTIALISED;
+    eFAILCODE m_nFaileCode = eFAILCODE::eUNINTIALISED;
 };
 
