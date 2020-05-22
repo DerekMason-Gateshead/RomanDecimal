@@ -72,8 +72,14 @@ RomanData::RomanData(char *RomanNumber)
 
 		default: // anything else 
 			m_bDataValid = false;
-			break;
+			m_nFaileCode = eFAILCODE::eFAIL_INVALID_DATA_VALUE;
+			return;
 		}
+	}
+
+	if (m_bDataValid)
+	{
+		m_nFaileCode = eFAILCODE::eSUCCESS;
 	}
 }
 

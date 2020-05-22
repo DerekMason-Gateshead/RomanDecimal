@@ -22,7 +22,8 @@ ValidTestData data[] = { {"VI",6},
 InvalidData  invalidTestData[] = { {"VIIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES},
                                   {"IIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES},
                                   {"IIV", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES},
-                                   {"VV", eFAILCODE::eFAIL_TOO_MANY_FIVE_BASE_VALUES} };
+                                   {"VV", eFAILCODE::eFAIL_TOO_MANY_FIVE_BASE_VALUES},
+                                    {"Z",eFAILCODE::eFAIL_INVALID_DATA_VALUE} };
 
 
 
@@ -68,7 +69,7 @@ TEST(RomanInput, TestInvalidDataFailCodeTests)
         RomanData  invalid(invalidTestData[i].romanNumber);
 
         EXPECT_EQ(invalidTestData[i].failcode, invalid.getFailCode())
-                         << "At index " << i << " Roman Numner " << invalidTestData[i].romanNumber;
+                         << "At index " << i << " Roman Number " << invalidTestData[i].romanNumber;
     }
 }
 
