@@ -14,12 +14,16 @@ struct InvalidData
     eFAILCODE failcode;
 };
 
-ValidTestData data[] = { {"VI",6},
+ValidTestData data[] = { {"I",1},
+                         {"VI",6},
                          {"IV",4},
                          {"X",10 },
                          {"III", 3},
                          {"XLI", 41},
-                         {"IX", 9}
+                         {"IX", 9},
+                         {"XXXIX",39},
+                         {"XLIX",49},
+                         {"LXIV",64}
      
 };
 
@@ -27,7 +31,8 @@ InvalidData  invalidTestData[] = { {"VIIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_
                                   {"IIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES},
                                   {"IIV", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES},
                                    {"VV", eFAILCODE::eFAIL_TOO_MANY_FIVE_BASE_VALUES},
-                                    {"Z",eFAILCODE::eFAIL_INVALID_DATA_VALUE} };
+                                    {"Z",eFAILCODE::eFAIL_INVALID_DATA_VALUE},
+                                    {"XXXIXX", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES} };
 
 
 

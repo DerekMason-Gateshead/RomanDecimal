@@ -144,6 +144,16 @@ bool RomanData::HandleX()
 	m_nDecimalValue += X_INCREMENT;
 	m_nCountRomanX++;
 
+	if (m_nCountRomanX > MAX_NUMBER_VAULUES)
+	{
+		if (m_eCurrentValue >= CURRENT_ROMAN_VALUE::X)
+		{
+			m_bDataValid = false;
+			m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES;
+			return false;
+		}
+	}
+
 	switch (m_eCurrentValue)
 	{
 	case CURRENT_ROMAN_VALUE::I:
