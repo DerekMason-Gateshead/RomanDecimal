@@ -1,5 +1,15 @@
 #pragma once
 
+enum eFAILCODE
+{
+    eSUCCESS = 0,
+    eFAIL_INVALID_DATA_VALUE = 1,
+    eFAIL_TOO_MANY_ONE_BASE_VALUES = 2,
+    eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES = 3,
+    eFAIL_TOO_MANY_FIVE_BASE_VALUES = 4,
+    eUNINTIALISED
+};
+
 class RomanData
 {
 public:
@@ -10,11 +20,14 @@ public:
 
 
     bool isDataValid(); // returns if roman data is valid 
-
     int getDecimalValue();
+    int getFailCode() { return m_nFaileCode; }
+
 
 private:
     bool m_bDataValid = false; // Set if roman data is valid
     int  m_nDecimalValue = 0;
+
+    eFAILCODE m_nFaileCode = eUNINTIALISED;
 };
 

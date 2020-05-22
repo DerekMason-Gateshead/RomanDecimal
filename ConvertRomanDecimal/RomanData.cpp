@@ -35,6 +35,7 @@ RomanData::RomanData(char *RomanNumber)
 			if (nCountRomanV > MAX_NUMBER_FIVEx_VALUES)
 			{
 				m_bDataValid = false;
+				m_nFaileCode = eFAIL_TOO_MANY_FIVE_BASE_VALUES;
 				return;
 			}
 
@@ -48,6 +49,8 @@ RomanData::RomanData(char *RomanNumber)
 				else
 				{
 					m_bDataValid = false;
+					m_nFaileCode = eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES;
+					return;
 				}
 			}
 			break;
@@ -57,6 +60,8 @@ RomanData::RomanData(char *RomanNumber)
 			if (nCountRomanOne > MAX_NUMBER_VAULUES)
 			{
 				m_bDataValid = false;
+				m_nFaileCode = eFAIL_TOO_MANY_ONE_BASE_VALUES;
+				return;
 			}
 			m_nDecimalValue += I_INCREMENT;
 			break;

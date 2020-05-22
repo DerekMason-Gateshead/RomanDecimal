@@ -11,7 +11,7 @@ struct ValidTestData
 struct InvalidData
 {
     char* romanNumber;
-
+    eFAILCODE failcode;
 };
 
 ValidTestData data[] = { {"VI",6}, 
@@ -19,10 +19,10 @@ ValidTestData data[] = { {"VI",6},
                          {"X",10 },
                          {"III", 3} };
 
-InvalidData  invalidTestData[] = { {"VIIII"},
-                                  {"IIII"},
-                                  {"IIV"},
-                                   {"VV"} };
+InvalidData  invalidTestData[] = { {"VIIII", eFAIL_TOO_MANY_ONE_BASE_VALUES},
+                                  {"IIII", eFAIL_TOO_MANY_ONE_BASE_VALUES},
+                                  {"IIV", eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES},
+                                   {"VV", eFAIL_TOO_MANY_FIVE_BASE_VALUES} };
 
 
 
@@ -59,6 +59,18 @@ TEST(RomanInput, TestValidValue)
 
 }
 
+TEST(RomanInput, TestInvalidDataFailCodeTests)
+{
+    int length = sizeof(invalidTestData) / sizeof(InvalidData);
+
+    for (int i = 0; i < length; i++)
+    {
+        RomanData  invalid(invalidTestData[i].romanNumber);
+
+        EXPECT_EQ(invalidTestData[i].failcode, invalid.getFailCode())
+                         << "At index " << i << " Roman Numner " << invalidTestData[i].romanNumber;
+    }
+}
 
 TEST(RomanInput, TestInvalidData)
 {
