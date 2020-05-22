@@ -14,10 +14,14 @@ struct InvalidData
     eFAILCODE failcode;
 };
 
-ValidTestData data[] = { {"VI",6}, 
-                         {"IV",4}, 
+ValidTestData data[] = { {"VI",6},
+                         {"IV",4},
                          {"X",10 },
-                         {"III", 3} };
+                         {"III", 3},
+                         {"XLI", 41},
+                         {"IX", 9}
+     
+};
 
 InvalidData  invalidTestData[] = { {"VIIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES},
                                   {"IIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES},

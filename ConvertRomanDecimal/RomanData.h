@@ -26,9 +26,26 @@ public:
     void setNumberString(char*);  // this resets the roman number
 
 private:
+    enum class CURRENT_ROMAN_VALUE
+    {
+        Undef,
+        I,
+        V,
+        X,
+        L,
+        C
+    };
+
     bool m_bDataValid = false; // Set if roman data is valid
     int  m_nDecimalValue = 0;
 
     eFAILCODE m_nFaileCode = eFAILCODE::eUNINTIALISED;
+
+    int m_nCountRomanOne = 0;
+    int m_nCountRomanV = 0;
+    int m_nCountRomanX = 0;
+    int m_nCountRomanL = 0;
+
+    CURRENT_ROMAN_VALUE m_eCurrentValue = CURRENT_ROMAN_VALUE::Undef;
 };
 
