@@ -11,8 +11,10 @@ public:
 
     bool isDataValid(); // returns if roman data is valid 
 
+    int getDecimalValue();
+
 private:
     bool m_bDataValid = false; // Set if roman data is valid
-  
+    int  m_nDecimalValue = 0;
 };
 

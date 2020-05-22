@@ -19,6 +19,19 @@ RomanData::RomanData(char *RomanNumber)
 		switch (RomanNumber[i])
 		{
 		case ROMAN5:  // valid roman numeral
+			m_nDecimalValue += 5;
+
+			if (nCountRomanOne > 0)
+			{
+				if (nCountRomanOne == 1)
+				{
+					m_nDecimalValue -= 2;
+				}
+				else
+				{
+					m_bDataValid = false;
+				}
+			}
 			break;
 		case ROMAN1:  // Valid roman numeral
 			nCountRomanOne++;
@@ -26,10 +39,10 @@ RomanData::RomanData(char *RomanNumber)
 			{
 				m_bDataValid = false;
 			}
-			
+			m_nDecimalValue += 1;
 			break;
 		case ROMAN10:
-
+			m_nDecimalValue += 10;
 			break;
 		default: // anything else 
 			m_bDataValid = false;
@@ -41,4 +54,9 @@ RomanData::RomanData(char *RomanNumber)
 bool RomanData::isDataValid()
 {
 	return m_bDataValid;
+}
+
+int RomanData::getDecimalValue()
+{
+	return m_nDecimalValue;
 }

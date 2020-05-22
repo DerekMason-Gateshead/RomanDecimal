@@ -10,7 +10,7 @@ struct ValidTestData
 
 
 
-ValidTestData data[] = { {"VI",6}, {"IV",4}, {"X",10 } };
+ValidTestData data[] = { {"VI",6}, {"IV",4}, {"X",10 }, {"III", 3} };
 
 TEST(RomanInput, TestValidData) 
 {
@@ -26,20 +26,23 @@ TEST(RomanInput, TestValidData)
 
     }
     
-    
+}
 
+TEST(RomanInput, TestValidValue)
+{
+    int length = sizeof(data) / sizeof(ValidTestData);
 
-    RomanData testVI("VI");
-//  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(testVI.isDataValid());
+    for (int i = 0; i < length; i++)
+    {
+        RomanData test(data[i].romanNumber);
 
-  RomanData testIV("IV");
-  EXPECT_TRUE(testIV.isDataValid());
+        EXPECT_EQ(test.getDecimalValue(), data[i].expectedValue) 
+                    << "At Index " << i << " Roman Number : " << data[i].romanNumber;
 
-  RomanData testIII("III");
-  EXPECT_TRUE(testIV.isDataValid());
+    }
 
 }
+
 
 TEST(RomanInput, TestInvalidData)
 {
