@@ -8,9 +8,25 @@ struct ValidTestData
     int expectedValue;
 };
 
+struct InvalidData
+{
+    char* romanNumber;
+
+};
+
+ValidTestData data[] = { {"VI",6}, 
+                         {"IV",4}, 
+                         {"X",10 },
+                         {"III", 3} };
+
+InvalidData  invalidTestData[] = { {"VIIII"},
+                                  {"IIII"},
+                                  {"IIV"},
+                                   {"VV"} };
 
 
-ValidTestData data[] = { {"VI",6}, {"IV",4}, {"X",10 }, {"III", 3} };
+
+
 
 TEST(RomanInput, TestValidData) 
 {
@@ -46,7 +62,12 @@ TEST(RomanInput, TestValidValue)
 
 TEST(RomanInput, TestInvalidData)
 {
-    RomanData testVIII("VIIII");
-    //  EXPECT_EQ(1, 1);
-    EXPECT_FALSE(testVIII.isDataValid());
+    int length = sizeof(invalidTestData) / sizeof(InvalidData);
+
+    for (int i = 0; i < length; i++)
+    {
+        RomanData  invalid(invalidTestData[i].romanNumber);
+
+        EXPECT_FALSE(invalid.isDataValid()) << "At index " << i << " Roman Numner " << invalidTestData[i].romanNumber;
+    }
 }
