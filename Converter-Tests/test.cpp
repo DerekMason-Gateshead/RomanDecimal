@@ -23,7 +23,10 @@ ValidTestData data[] = { {"I",1},
                          {"XXXIX",39},
                          {"XLI", 41},
                          {"XLIX",49},
-                         {"LXIV",64}
+                         {"LXIV",64},
+                         {"LXXII",72},
+                         {"LXXXIV",84},
+                         {"LXXXVIII",88}
                          
      
 };
@@ -37,6 +40,7 @@ InvalidData  invalidTestData[] = { {"VIIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_
                                      {"LL",eFAILCODE::eFAIL_TOO_MANY_FIVE_BASE_VALUES},
                                         {"LXL",eFAILCODE::eFAIL_TOO_MANY_FIVE_BASE_VALUES},
                                         {"LIIX", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES},
+                                          {"LXXXVXI",eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES},
 };
 
 
