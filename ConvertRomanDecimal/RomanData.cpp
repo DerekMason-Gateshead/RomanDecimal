@@ -182,6 +182,13 @@ bool RomanData::HandleL()
 	m_nDecimalValue += L_INCREMENT;
 	m_nCountRomanL++;
 
+	if (m_nCountRomanL > MAX_NUMBER_FIVEx_VALUES)
+	{
+		m_bDataValid = false;
+		m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_FIVE_BASE_VALUES;
+		return m_bDataValid;
+	}
+
 	switch (m_eCurrentValue)
 	{
 	case CURRENT_ROMAN_VALUE::X:
