@@ -3,6 +3,7 @@
 
 #define ROMAN1 'I'
 #define ROMAN5 'V'
+#define ROMAN10 'X'
 
 RomanData::RomanData()
 {
@@ -26,6 +27,9 @@ RomanData::RomanData(char *RomanNumber)
 				m_bDataValid = false;
 			}
 			
+			break;
+		case ROMAN10:
+
 			break;
 		default: // anything else 
 			m_bDataValid = false;
