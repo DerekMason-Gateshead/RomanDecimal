@@ -5,6 +5,14 @@
 #define ROMAN5 'V'
 #define ROMAN10 'X'
 
+
+#define X_INCREMENT 10
+#define V_INCREMENT 5
+#define I_INCREMENT 1
+#define PRE_VALUE_I_DECREMENT  (VALID_NUMBER_PRE_VALUE * 2)
+#define VALID_NUMBER_PRE_VALUE 1
+#define MAX_NUMBER_VAULUES		3
+
 RomanData::RomanData()
 {
 }
@@ -18,14 +26,15 @@ RomanData::RomanData(char *RomanNumber)
 	{
 		switch (RomanNumber[i])
 		{
-		case ROMAN5:  // valid roman numeral
-			m_nDecimalValue += 5;
+		case ROMAN5:  // valid roman numeral V
+			m_nDecimalValue += V_INCREMENT;
 
+			// if there where I's prior to the V then fix value
 			if (nCountRomanOne > 0)
 			{
-				if (nCountRomanOne == 1)
+				if (nCountRomanOne == VALID_NUMBER_PRE_VALUE)
 				{
-					m_nDecimalValue -= 2;
+					m_nDecimalValue -= PRE_VALUE_I_DECREMENT;
 				}
 				else
 				{
@@ -33,17 +42,20 @@ RomanData::RomanData(char *RomanNumber)
 				}
 			}
 			break;
+
 		case ROMAN1:  // Valid roman numeral
 			nCountRomanOne++;
-			if (nCountRomanOne > 3)
+			if (nCountRomanOne > MAX_NUMBER_VAULUES)
 			{
 				m_bDataValid = false;
 			}
-			m_nDecimalValue += 1;
+			m_nDecimalValue += I_INCREMENT;
 			break;
+
 		case ROMAN10:
-			m_nDecimalValue += 10;
+			m_nDecimalValue += X_INCREMENT;
 			break;
+
 		default: // anything else 
 			m_bDataValid = false;
 			break;
