@@ -30,9 +30,7 @@ InvalidData  invalidTestData[] = { {"VIIII", eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_
 
 
 TEST(RomanInput, TestValidData) 
-{
-    
-    
+{    
     int length = sizeof(data) / sizeof(ValidTestData);
   
     for (int i = 0; i < length; i++)
@@ -52,6 +50,7 @@ TEST(RomanInput, TestValidValue)
     for (int i = 0; i < length; i++)
     {
         RomanData test(data[i].romanNumber);
+        
 
         EXPECT_EQ(test.getDecimalValue(), data[i].expectedValue) 
                     << "At Index " << i << " Roman Number : " << data[i].romanNumber;
@@ -59,6 +58,40 @@ TEST(RomanInput, TestValidValue)
     }
 
 }
+
+// test with a method where constructor declared once and values input
+TEST(RomanInput, TestValidValuewithSingleClassConstruct)
+{
+    int length = sizeof(data) / sizeof(ValidTestData);
+
+    RomanData test;
+
+    for (int i = 0; i < length; i++)
+    {
+         test.setNumberString(data[i].romanNumber);
+
+
+        EXPECT_EQ(test.getDecimalValue(), data[i].expectedValue)
+            << "At Index " << i << " Roman Number : " << data[i].romanNumber;
+
+    }
+
+}
+
+TEST(RomanInput, TestValidDataWithSingleClassConsturct)
+{
+    int length = sizeof(data) / sizeof(ValidTestData);
+    RomanData test;
+
+    for (int i = 0; i < length; i++)
+    {
+        test.setNumberString(data[i].romanNumber);
+
+        EXPECT_TRUE(test.isDataValid()) << "At Index " << i << " Roman Number : " << data[i].romanNumber;
+
+    }
+}
+
 
 TEST(RomanInput, TestInvalidDataFailCodeTests)
 {
@@ -73,6 +106,22 @@ TEST(RomanInput, TestInvalidDataFailCodeTests)
     }
 }
 
+TEST(RomanInput, TestInvalidDataFailCodeTestsSingleClassConstruct)
+{
+    int length = sizeof(invalidTestData) / sizeof(InvalidData);
+
+    RomanData  invalid;
+  //  (invalidTestData[i].romanNumber);
+
+    for (int i = 0; i < length; i++)
+    {
+        invalid.setNumberString(invalidTestData[i].romanNumber);
+
+        EXPECT_EQ(invalidTestData[i].failcode, invalid.getFailCode())
+            << "At index " << i << " Roman Number " << invalidTestData[i].romanNumber;
+    }
+}
+
 TEST(RomanInput, TestInvalidData)
 {
     int length = sizeof(invalidTestData) / sizeof(InvalidData);
@@ -80,6 +129,20 @@ TEST(RomanInput, TestInvalidData)
     for (int i = 0; i < length; i++)
     {
         RomanData  invalid(invalidTestData[i].romanNumber);
+
+        EXPECT_FALSE(invalid.isDataValid()) << "At index " << i << " Roman Numner " << invalidTestData[i].romanNumber;
+    }
+}
+
+TEST(RomanInput, TestInvalidDataSingleClassConstruct)
+{
+    int length = sizeof(invalidTestData) / sizeof(InvalidData);
+
+    RomanData  invalid;
+
+    for (int i = 0; i < length; i++)
+    {  
+        invalid.setNumberString(invalidTestData[i].romanNumber);
 
         EXPECT_FALSE(invalid.isDataValid()) << "At index " << i << " Roman Numner " << invalidTestData[i].romanNumber;
     }

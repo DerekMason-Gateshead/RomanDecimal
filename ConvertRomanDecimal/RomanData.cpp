@@ -21,9 +21,29 @@ RomanData::RomanData()
 
 RomanData::RomanData(char *RomanNumber)
 {
+	setNumberString(RomanNumber);
+
+}
+
+bool RomanData::isDataValid()
+{
+	return m_bDataValid;
+}
+
+int RomanData::getDecimalValue()
+{
+	return m_nDecimalValue;
+}
+
+/*
+* Adds new number replacing existing numner
+*/
+void RomanData::setNumberString(char *RomanNumber)
+{
 	int nCountRomanOne = 0;
 	int nCountRomanV = 0;
-	m_bDataValid  = true;
+	m_nDecimalValue = 0;
+	m_bDataValid = true;
 	for (int i = 0; i < strlen(RomanNumber); i++)
 	{
 		switch (RomanNumber[i])
@@ -75,20 +95,11 @@ RomanData::RomanData(char *RomanNumber)
 			m_nFaileCode = eFAILCODE::eFAIL_INVALID_DATA_VALUE;
 			return;
 		}
+
 	}
 
 	if (m_bDataValid)
 	{
 		m_nFaileCode = eFAILCODE::eSUCCESS;
 	}
-}
-
-bool RomanData::isDataValid()
-{
-	return m_bDataValid;
-}
-
-int RomanData::getDecimalValue()
-{
-	return m_nDecimalValue;
 }

@@ -23,6 +23,7 @@ public:
     int getDecimalValue();
     eFAILCODE getFailCode() { return m_nFaileCode; }
 
+    void setNumberString(char*);  // this resets the roman number
 
 private:
     bool m_bDataValid = false; // Set if roman data is valid
