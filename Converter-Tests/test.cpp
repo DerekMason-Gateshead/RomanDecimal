@@ -15,13 +15,13 @@ struct InvalidData
 };
 
 ValidTestData data[] = { {"I",1},
-                         {"VI",6},
-                         {"IV",4},
-                         {"X",10 },
                          {"III", 3},
-                         {"XLI", 41},
-                         {"IX", 9},
+                         {"IV",4},
+                         {"VI",6},
+                         {"IX",9},
+                         {"X",10 },
                          {"XXXIX",39},
+                         {"XLI", 41},
                          {"XLIX",49},
                          {"LXIV",64}
      
