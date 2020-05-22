@@ -36,6 +36,15 @@ private:
         C
     };
 
+    // handles a V in Roman Number String Input
+    bool HandleV();
+    bool HandleI();
+    bool HandleX();
+    bool HandleL();
+    bool HandleC();
+
+   
+
     bool m_bDataValid = false; // Set if roman data is valid
     int  m_nDecimalValue = 0;
 

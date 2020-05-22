@@ -59,95 +59,24 @@ void RomanData::setNumberString(char *RomanNumber)
 		switch (RomanNumber[i])
 		{
 		case ROMAN5:  // valid roman numeral V
-			m_nDecimalValue += V_INCREMENT;
-			m_nCountRomanV++;
-
-			if (m_nCountRomanV > MAX_NUMBER_FIVEx_VALUES)
-			{
-				m_bDataValid = false;
-				m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_FIVE_BASE_VALUES;
+			if (!HandleV())
 				return;
-			}
-
-			// if there where I's prior to the V then fix value
-			if (m_nCountRomanOne > 0)
-			{
-				if (m_nCountRomanOne == VALID_NUMBER_PRE_VALUE)
-				{
-					m_nDecimalValue -= PRE_VALUE_I_DECREMENT;
-					m_nCountRomanOne = 0;
-				}
-				else
-				{
-					m_bDataValid = false;
-					m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES;
-					return;
-				}
-			}
 
 			m_eCurrentValue == CURRENT_ROMAN_VALUE::V;
 			break;
 
 		case ROMAN1:  // Valid roman numeral
-			m_nCountRomanOne++;
-			if (m_nCountRomanOne > MAX_NUMBER_VAULUES)
-			{
-				m_bDataValid = false;
-				m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES;
-				return;
-			}
-			m_nDecimalValue += I_INCREMENT;
+			if (!HandleI()) return;
 			m_eCurrentValue = CURRENT_ROMAN_VALUE::I;
 			break;
 
 		case ROMAN10:
-			m_nDecimalValue += X_INCREMENT;
-			m_nCountRomanX++;
-
-			switch (m_eCurrentValue)
-			{
-			case CURRENT_ROMAN_VALUE::I:
-			{
-				if (m_nCountRomanOne == VALID_NUMBER_PRE_VALUE)
-				{
-					m_nDecimalValue -= PRE_VALUE_I_DECREMENT;
-					m_nCountRomanOne = 0;
-				}
-				else
-				{
-					m_bDataValid = false;
-					m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES;
-				}
-				break;
-			}
-			default:
-				break;
-			}
+			if (!HandleX()) return;
 			m_eCurrentValue = CURRENT_ROMAN_VALUE::X;
 			break;
 
 		case ROMAN50:
-			
-			m_nDecimalValue += L_INCREMENT;
-			m_nCountRomanL++;
-			
-			switch (m_eCurrentValue)
-			{
-			case CURRENT_ROMAN_VALUE::X:
-				if (m_nCountRomanX == VALID_NUMBER_PRE_VALUE)
-				{
-					m_nDecimalValue -= PRE_VALUE_X_DECREMENT;
-					m_nCountRomanX = 0;
-				}
-				else
-				{
-					m_bDataValid = false;
-					m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES;
-				}
-				break;
-			default:
-				break;
-			}
+			if (!HandleL()) return;
 			
 			m_eCurrentValue = CURRENT_ROMAN_VALUE::L;
 			break;
@@ -164,4 +93,107 @@ void RomanData::setNumberString(char *RomanNumber)
 	{
 		m_nFaileCode = eFAILCODE::eSUCCESS;
 	}
+}
+
+bool RomanData::HandleV()
+{
+	m_nDecimalValue += V_INCREMENT;
+	m_nCountRomanV++;
+
+	if (m_nCountRomanV > MAX_NUMBER_FIVEx_VALUES)
+	{
+		m_bDataValid = false;
+		m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_FIVE_BASE_VALUES;
+		return false;
+	}
+
+	// if there where I's prior to the V then fix value
+	if (m_nCountRomanOne > 0)
+	{
+		if (m_nCountRomanOne == VALID_NUMBER_PRE_VALUE)
+		{
+			m_nDecimalValue -= PRE_VALUE_I_DECREMENT;
+			m_nCountRomanOne = 0;
+		}
+		else
+		{
+			m_bDataValid = false;
+			m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES;
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool RomanData::HandleI()
+{
+	m_nCountRomanOne++;
+	if (m_nCountRomanOne > MAX_NUMBER_VAULUES)
+	{
+		m_bDataValid = false;
+		m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_VALUES;
+		return false;
+	}
+	m_nDecimalValue += I_INCREMENT;
+	return m_bDataValid;
+}
+
+bool RomanData::HandleX()
+{
+	m_nDecimalValue += X_INCREMENT;
+	m_nCountRomanX++;
+
+	switch (m_eCurrentValue)
+	{
+	case CURRENT_ROMAN_VALUE::I:
+	{
+		if (m_nCountRomanOne == VALID_NUMBER_PRE_VALUE)
+		{
+			m_nDecimalValue -= PRE_VALUE_I_DECREMENT;
+			m_nCountRomanOne = 0;
+		}
+		else
+		{
+			m_bDataValid = false;
+			m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES;
+		}
+		break;
+	}
+	default:
+		break;
+	}
+
+	return m_bDataValid;
+}
+
+bool RomanData::HandleL()
+{
+	m_nDecimalValue += L_INCREMENT;
+	m_nCountRomanL++;
+
+	switch (m_eCurrentValue)
+	{
+	case CURRENT_ROMAN_VALUE::X:
+		if (m_nCountRomanX == VALID_NUMBER_PRE_VALUE)
+		{
+			m_nDecimalValue -= PRE_VALUE_X_DECREMENT;
+			m_nCountRomanX = 0;
+		}
+		else
+		{
+			m_bDataValid = false;
+			m_nFaileCode = eFAILCODE::eFAIL_TOO_MANY_ONE_BASE_PRE_VALUES;
+		}
+		break;
+	default:
+		break;
+	}
+
+	return m_bDataValid;
+}
+
+bool RomanData::HandleC()
+{
+	return false;
 }
